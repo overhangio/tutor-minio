@@ -1,0 +1,16 @@
+build:
+  script:
+    - python3 setup.py install
+    - python3 -m unittest discover tests
+
+deploy:
+  script:
+    - apk add --no-cache make
+    - pip3 install -U setuptools twine
+    - python3 setup.py sdist
+    - twine upload --skip-existing dist/tutor-minio*.tar.gz
+  only:
+    refs:
+      - master
+  tags:
+    - private
