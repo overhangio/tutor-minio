@@ -30,7 +30,7 @@ setup(
     description="A Tutor plugin for object storage in MinIO",
     long_description=readme,
     packages=find_packages(exclude=["tests*"]),
-    package_data={"tutorminio": ["templates/**", "patches/**"]},
+    include_package_data=True,
     python_requires=">=3.5",
     install_requires=["tutor-openedx"],
     entry_points={"tutor.plugin.v0": ["minio = tutorminio.plugin"]},
