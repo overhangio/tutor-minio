@@ -24,8 +24,7 @@ Configuration
 - ``MINIO_COURSE_IMPORT_EXPORT_BUCKET`` (default: ``"openedxcourseimportexport"``)
 - ``MINIO_HOST`` (default: ``"minio.{{ LMS_HOST }}"``)
 - ``MINIO_DOCKER_REGISTRY`` (default: ``"{{ DOCKER_REGISTRY }}"``)
-- ``MINIO_DOCKER_IMAGE_CLIENT`` (default: ``"minio/mc:RELEASE.2019-05-23T01-33-27Z"``)
-- ``MINIO_DOCKER_IMAGE_SERVER`` (default: ``"minio/minio:RELEASE.2019-05-23T00-29-34Z"``)
+- ``MINIO_DOCKER_IMAGE`` (default: ``"overhangio/minio:{{ MINIO_VERSION }}"``)
 
 These values can be modified with ``tutor config save --set PARAM_NAME=VALUE`` commands.
 

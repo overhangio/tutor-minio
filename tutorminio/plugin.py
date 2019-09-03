@@ -1,6 +1,9 @@
 import os
 from glob import glob
 
+from .__about__ import __version__
+
+
 HERE = os.path.abspath(os.path.dirname(__file__))
 
 config = {
@@ -9,24 +12,22 @@ config = {
         "OPENEDX_AWS_SECRET_ACCESS_KEY": "{{ 24|random_string }}",
     },
     "defaults": {
+        "VERSION": __version__,
         "BUCKET_NAME": "openedx",
         "FILE_UPLOAD_BUCKET_NAME": "openedxuploads",
         "COURSE_IMPORT_EXPORT_BUCKET": "openedxcourseimportexport",
         "HOST": "minio.{{ LMS_HOST }}",
         "DOCKER_REGISTRY": "{{ DOCKER_REGISTRY }}",
-        "DOCKER_IMAGE_CLIENT": "minio/mc:RELEASE.2019-05-23T01-33-27Z",
-        "DOCKER_IMAGE_SERVER": "minio/minio:RELEASE.2019-05-23T00-29-34Z",
+        "DOCKER_IMAGE": "overhangio/minio:{{ MINIO_VERSION }}",
     },
 }
 
 templates = os.path.join(HERE, "templates")
 
 hooks = {
-    "pre-init": ["minio-client"],
-    "remote-image": {
-        "minio-server": "{{ MINIO_DOCKER_IMAGE_SERVER }}",
-        "minio-client": "{{ MINIO_DOCKER_IMAGE_CLIENT }}",
-    },
+    "pre-init": ["minio"],
+    "build-image": {"minio": "{{ MINIO_DOCKER_IMAGE }}"},
+    "remote-image": {"minio": "{{ MINIO_DOCKER_IMAGE }}"},
 }
 
 
