@@ -32,6 +32,7 @@ setup(
     packages=find_packages(exclude=["tests*"]),
     package_data={"tutorminio": ["templates/**", "patches/**"]},
     python_requires=">=3.5",
+    install_requires=["tutor-openedx"],
     entry_points={"tutor.plugin.v0": ["minio = tutorminio.plugin"]},
     classifiers=[
         "Development Status :: 3 - Alpha",
