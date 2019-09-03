@@ -11,7 +11,8 @@ minio:
 
 minio-client:
   image: {{ MINIO_DOCKER_REGISTRY }}{{ MINIO_DOCKER_IMAGE_CLIENT }}
-  restart: "no"
-  entrypoint: sh
+  restart: unless-stopped
+  entrypoint: ["sh", "-e", "-c"]
+  command: ["echo 'ready'; while true; do sleep 60; done"]
   depends_on:
     - minio

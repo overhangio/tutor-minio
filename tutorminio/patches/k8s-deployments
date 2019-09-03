@@ -54,4 +54,4 @@ spec:
         - name: minio
           image: {{ MINIO_DOCKER_REGISTRY }}{{ MINIO_DOCKER_IMAGE_CLIENT }}
           command: ["sh", "-e", "-c"]
-          args: ["while true; do echo 'ready'; sleep 10; done"]
+          args: ["echo 'ready'; while true; do sleep 60; done"]
