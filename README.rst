@@ -5,6 +5,8 @@ This is a plugin for `Tutor <https://docs.tutor.overhang.io>`_ that provides S3-
 
 In particular, this plugin is essential for `Kubernetes deployment <https://docs.tutor.overhang.io/k8s.html>`_.
 
+Also, this plugin allows course teams to upload videos directly from the studio. To do so, HTTPS must be enabled. To enable video uploads for all courses, add a new entry to http://<CMS_HOST>/admin/video_pipeline/videouploadsenabledbydefault/.
+
 Installation
 ------------
 

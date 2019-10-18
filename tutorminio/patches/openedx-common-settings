@@ -15,3 +15,5 @@ is_secure = {{ "True" if ACTIVATE_HTTPS else "False" }}
 [s3]
 host = {{ MINIO_HOST }}
 calling_format = boto.s3.connection.OrdinaryCallingFormat""")
+# Similarly, it is necessary to force Sigv4 for video upload from the studio frontend
+os.environ["S3_USE_SIGV4"] = "1"
