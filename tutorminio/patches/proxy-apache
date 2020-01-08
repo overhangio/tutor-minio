@@ -1,0 +1,27 @@
+{% if ACTIVATE_HTTPS %}
+<VirtualHost *:80>
+   ServerName {{ MINIO_HOST }}
+   Redirect / https://{{ MINIO_HOST }}/
+</VirtualHost>
+
+<VirtualHost *:443>
+    ServerName {{ MINIO_HOST }}
+    SSLEngine on
+    SSLCertificateFile /etc/letsencrypt/live/{{ MINIO_HOST }}/fullchain.pem
+    SSLCertificateKeyFile /etc/letsencrypt/live/{{ MINIO_HOST }}/privkey.pem
+
+    ProxyPreserveHost On
+    ProxyRequests On
+    ProxyPass / http://localhost:{{ NGINX_HTTP_PORT }}/
+    ProxyPassReverse / http://localhost:{{ NGINX_HTTP_PORT }}/
+</VirtualHost>
+{% else %}
+<VirtualHost *:80>
+    ServerName {{ MINIO_HOST }}
+
+    ProxyPreserveHost On
+    ProxyRequests On
+    ProxyPass / http://localhost:{{ NGINX_HTTP_PORT }}/
+    ProxyPassReverse / http://localhost:{{ NGINX_HTTP_PORT }}/
+</VirtualHost>
+{% endif %}
