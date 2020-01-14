@@ -29,7 +29,7 @@ deploy:image:
 
 deploy:pypi:
   script:
-    - pip3 install -U setuptools twine
+    - pip3 install -U setuptools twine==2.0.0
     - python3 setup.py sdist
     - twine upload --skip-existing dist/tutor-minio*.tar.gz
   only:
