@@ -26,8 +26,8 @@ templates = os.path.join(HERE, "templates")
 
 hooks = {
     "pre-init": ["minio"],
-    "build-image": {"minio": "{{ MINIO_DOCKER_REGISTRY }}{{ MINIO_DOCKER_IMAGE }}"},
-    "remote-image": {"minio": "{{ MINIO_DOCKER_REGISTRY }}{{ MINIO_DOCKER_IMAGE }}"},
+    "build-image": {"minio": "{{ DOCKER_REGISTRY }}{{ MINIO_DOCKER_IMAGE }}"},
+    "remote-image": {"minio": "{{ DOCKER_REGISTRY }}{{ MINIO_DOCKER_IMAGE }}"},
 }
 
 

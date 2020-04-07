@@ -1,6 +1,6 @@
 # MinIO
 minio:
-  image: {{ MINIO_DOCKER_REGISTRY }}{{ MINIO_DOCKER_IMAGE }}
+  image: {{ DOCKER_REGISTRY }}{{ MINIO_DOCKER_IMAGE }}
   volumes:
     - ../../data/minio:/data
   environment:
