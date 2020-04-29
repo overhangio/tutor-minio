@@ -1,40 +1,8 @@
-build:image:
-  script:
-    - apk add --no-cache docker
-    - python setup.py install
-    - tutor plugins enable minio
-    - tutor config save
-    - tutor images build minio
-  only:
-    refs:
-      - master
-  tags:
-    - private
-  stage: build
+variables:
+    TUTOR_PLUGIN: minio
+    TUTOR_IMAGES: minio
+    TUTOR_PYPI_PACKAGE: tutor-minio
 
-deploy:image:
-  script:
-    - apk add --no-cache docker
-    - docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
-    - python setup.py install
-    - tutor plugins enable minio
-    - tutor config save
-    - tutor images push minio
-  only:
-    refs:
-      - master
-  tags:
-    - private
-  stage: deploy
-
-deploy:pypi:
-  script:
-    - pip3 install -U setuptools twine==2.0.0
-    - python3 setup.py sdist
-    - twine upload --skip-existing dist/tutor-minio*.tar.gz
-  only:
-    refs:
-      - master
-  tags:
-    - private
-  stage: deploy
+include:
+  - project: 'community/tutor-ci'
+    file: 'plugin-gitlab-ci.yml'
