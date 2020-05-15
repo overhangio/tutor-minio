@@ -19,7 +19,11 @@ spec:
       containers:
         - name: minio
           image: {{ DOCKER_REGISTRY }}{{ MINIO_DOCKER_IMAGE }}
+          {% if MINIO_MODE == "server" %}
           args: ["server", "--address", ":9000", "/data"]
+          {% else %}
+          args: ["gateway", "{{ MINIO_GATEWAY }}", "{{ MINIO_GATEWAY_ENDPOINT }}", "--address", ":9000"]
+          {% endif %}
           env:
             - name: MINIO_ACCESS_KEY
               value: "{{ OPENEDX_AWS_ACCESS_KEY }}"

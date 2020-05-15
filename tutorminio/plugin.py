@@ -19,6 +19,9 @@ config = {
         "HOST": "minio.{{ LMS_HOST }}",
         "DOCKER_REGISTRY": "{{ DOCKER_REGISTRY }}",
         "DOCKER_IMAGE": "overhangio/minio:{{ MINIO_VERSION }}",
+        "MODE": "server",
+        "GATEWAY": "s3",
+        "GATEWAY_ENDPOINT": "https://s3.us-east-2.amazonaws.com",
     },
 }
 
