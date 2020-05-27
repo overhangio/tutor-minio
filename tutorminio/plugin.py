@@ -15,7 +15,7 @@ config = {
         "VERSION": __version__,
         "BUCKET_NAME": "openedx",
         "FILE_UPLOAD_BUCKET_NAME": "openedxuploads",
-        "COURSE_IMPORT_EXPORT_BUCKET": "openedxcourseimportexport",
+        "VIDEO_UPLOAD_BUCKET_NAME": "openedxvideos",
         "HOST": "minio.{{ LMS_HOST }}",
         "DOCKER_REGISTRY": "{{ DOCKER_REGISTRY }}",
         "DOCKER_IMAGE": "overhangio/minio:{{ MINIO_VERSION }}",

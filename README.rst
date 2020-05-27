@@ -21,7 +21,6 @@ Configuration
 
 - ``MINIO_BUCKET_NAME`` (default: ``"openedx"``)
 - ``MINIO_FILE_UPLOAD_BUCKET_NAME`` (default: ``"openedxuploads"``)
-- ``MINIO_COURSE_IMPORT_EXPORT_BUCKET`` (default: ``"openedxcourseimportexport"``)
 - ``MINIO_HOST`` (default: ``"minio.{{ LMS_HOST }}"``)
 - ``MINIO_DOCKER_IMAGE`` (default: ``"overhangio/minio:{{ MINIO_VERSION }}"``)
 
