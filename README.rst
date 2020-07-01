@@ -29,9 +29,7 @@ These values can be modified with ``tutor config save --set PARAM_NAME=VALUE`` c
 DNS records
 -----------
 
-It is assumed that the ``MINIO_HOST`` DNS record points to your server. When running MinIO on your laptop, you should point your services to ``minio.localhost``::
-
-    tutor config save --set MINIO_HOST=minio.localhost
+It is assumed that the ``MINIO_HOST`` DNS record points to your server. When running MinIO on your laptop, MinIO will be available at http://minio.local.overhang.io. In development mode, the MinIO interface will be available at http://minio.local.overhang.io:9000.
 
 Web UI
 ------
