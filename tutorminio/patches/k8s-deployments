@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
         - name: minio
-          image: {{ DOCKER_REGISTRY }}{{ MINIO_DOCKER_IMAGE }}
+          image: {{ MINIO_DOCKER_IMAGE }}
           args: ["server", "--address", ":9000", "/data"]
           env:
             - name: MINIO_ACCESS_KEY

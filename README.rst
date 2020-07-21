@@ -22,7 +22,7 @@ Configuration
 - ``MINIO_BUCKET_NAME`` (default: ``"openedx"``)
 - ``MINIO_FILE_UPLOAD_BUCKET_NAME`` (default: ``"openedxuploads"``)
 - ``MINIO_HOST`` (default: ``"minio.{{ LMS_HOST }}"``)
-- ``MINIO_DOCKER_IMAGE`` (default: ``"overhangio/minio:{{ MINIO_VERSION }}"``)
+- ``MINIO_DOCKER_IMAGE`` (default: ``"{{ DOCKER_REGISTRY }}overhangio/minio:{{ MINIO_VERSION }}"``)
 
 These values can be modified with ``tutor config save --set PARAM_NAME=VALUE`` commands.
 

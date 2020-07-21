@@ -17,8 +17,7 @@ config = {
         "FILE_UPLOAD_BUCKET_NAME": "openedxuploads",
         "VIDEO_UPLOAD_BUCKET_NAME": "openedxvideos",
         "HOST": "minio.{{ LMS_HOST }}",
-        "DOCKER_REGISTRY": "{{ DOCKER_REGISTRY }}",
-        "DOCKER_IMAGE": "overhangio/minio:{{ MINIO_VERSION }}",
+        "DOCKER_IMAGE": "{{ DOCKER_REGISTRY }}overhangio/minio:{{ MINIO_VERSION }}",
     },
 }
 
@@ -26,8 +25,8 @@ templates = os.path.join(HERE, "templates")
 
 hooks = {
     "pre-init": ["minio"],
-    "build-image": {"minio": "{{ DOCKER_REGISTRY }}{{ MINIO_DOCKER_IMAGE }}"},
-    "remote-image": {"minio": "{{ DOCKER_REGISTRY }}{{ MINIO_DOCKER_IMAGE }}"},
+    "build-image": {"minio": "{{ MINIO_DOCKER_IMAGE }}"},
+    "remote-image": {"minio": "{{ MINIO_DOCKER_IMAGE }}"},
 }
 
 
