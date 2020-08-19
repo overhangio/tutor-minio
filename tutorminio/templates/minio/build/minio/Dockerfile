@@ -1,4 +1,4 @@
-FROM docker.io/minio/minio:RELEASE.2020-05-16T01-33-21Z
+FROM docker.io/minio/minio:RELEASE.2020-08-18T19-41-00Z
 
 RUN \
     apk add --no-cache ca-certificates && \
