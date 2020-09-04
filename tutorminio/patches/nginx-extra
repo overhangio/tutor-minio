@@ -11,7 +11,7 @@ server {
 {% endif %}
 server {
   {% if ACTIVATE_HTTPS %}listen 443 {{ "" if WEB_PROXY else "ssl" }};{% else %}listen 80;{% endif %}
-  server_name minio.localhost {{ MINIO_HOST }};
+  server_name {{ MINIO_HOST }};
 
   {% if ACTIVATE_HTTPS and not WEB_PROXY %}
   ssl_certificate /etc/letsencrypt/live/{{ MINIO_HOST }}/fullchain.pem;
@@ -20,7 +20,7 @@ server {
 
   # Disables server version feedback on pages and in headers
   server_tokens off;
-  
+ 
   client_max_body_size 0;
 
   location / {

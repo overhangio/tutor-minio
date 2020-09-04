@@ -1,10 +1,16 @@
 # MinIO
 minio:
   image: {{ MINIO_DOCKER_IMAGE }}
+  {% if not MINIO_GATEWAY %}
   volumes:
     - ../../data/minio:/data
+  {% endif %}
   environment:
     MINIO_ACCESS_KEY: "{{ OPENEDX_AWS_ACCESS_KEY }}"
     MINIO_SECRET_KEY: "{{ OPENEDX_AWS_SECRET_ACCESS_KEY }}"
+  {% if MINIO_GATEWAY %}
+  command: gateway {{ MINIO_GATEWAY }} --address ":9000"
+  {% else %}
   command: server --address ":9000" /data
+  {% endif %}
   restart: unless-stopped
