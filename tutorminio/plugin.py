@@ -9,7 +9,10 @@ HERE = os.path.abspath(os.path.dirname(__file__))
 config = {
     "set": {
         "OPENEDX_AWS_ACCESS_KEY": "openedx",
-        "OPENEDX_AWS_SECRET_ACCESS_KEY": "{{ 24|random_string }}",
+        "OPENEDX_AWS_SECRET_ACCESS_KEY": "{{ MINIO_AWS_SECRET_ACCESS_KEY }}",
+    },
+    "add": {
+        "AWS_SECRET_ACCESS_KEY": "{{ OPENEDX_AWS_SECRET_ACCESS_KEY|default('') or 24|random_string }}",
     },
     "defaults": {
         "VERSION": __version__,
