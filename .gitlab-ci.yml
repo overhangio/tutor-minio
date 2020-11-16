@@ -2,6 +2,7 @@ variables:
     TUTOR_PLUGIN: minio
     TUTOR_IMAGES: minio
     TUTOR_PYPI_PACKAGE: tutor-minio
+    OPENEDX_RELEASE: juniper
 
 include:
   - project: 'community/tutor-ci'
