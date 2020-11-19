@@ -8,8 +8,7 @@ ORA2_FILEUPLOAD_BACKEND = "s3"
 FILE_UPLOAD_STORAGE_BUCKET_NAME = "{{ MINIO_FILE_UPLOAD_BUCKET_NAME }}"
 
 AWS_S3_SIGNATURE_VERSION = "s3v4"
-# Note that this might not work with runserver, where nginx is not running
-AWS_S3_ENDPOINT_URL = "{{ "https" if ACTIVATE_HTTPS else "http" }}://{{ MINIO_HOST }}"
+AWS_S3_ENDPOINT_URL = "{{ "https" if ENABLE_HTTPS else "http" }}://{{ MINIO_HOST }}"
 AWS_AUTO_CREATE_BUCKET = False # explicit is better than implicit
 AWS_DEFAULT_ACL = None
 AWS_QUERYSTRING_EXPIRE = 7 * 24 * 60 * 60  # 1 week: this is necessary to generate valid download urls

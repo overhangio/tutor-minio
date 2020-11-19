@@ -1,0 +1,20 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: minio-job
+  labels:
+    app.kubernetes.io/component: job
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: minio
+        image: {{ MINIO_DOCKER_IMAGE }}
+        command: []
+        env:
+          - name: MINIO_ACCESS_KEY
+            value: "{{ OPENEDX_AWS_ACCESS_KEY }}"
+          - name: MINIO_SECRET_KEY
+            value: "{{ OPENEDX_AWS_SECRET_ACCESS_KEY }}"
