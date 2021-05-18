@@ -32,7 +32,7 @@ setup(
     packages=find_packages(exclude=["tests*"]),
     include_package_data=True,
     python_requires=">=3.5",
-    install_requires=["tutor-openedx>=11.0.0,<12.0.0"],
+    install_requires=["tutor-openedx>=12.0.0,<13.0.0"],
     entry_points={"tutor.plugin.v0": ["minio = tutorminio.plugin"]},
     classifiers=[
         "Development Status :: 5 - Production/Stable",
