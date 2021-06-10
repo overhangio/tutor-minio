@@ -20,8 +20,8 @@ config = {
         "FILE_UPLOAD_BUCKET_NAME": "openedxuploads",
         "VIDEO_UPLOAD_BUCKET_NAME": "openedxvideos",
         "HOST": "minio.{{ LMS_HOST }}",
-        "DOCKER_IMAGE": "docker.io/minio/minio:RELEASE.2021-05-18T00-53-28Z",
-        "MC_DOCKER_IMAGE": "docker.io/minio/mc:RELEASE.2021-05-18T03-39-44Z",
+        "DOCKER_IMAGE": "docker.io/minio/minio:RELEASE.2021-06-07T21-40-51Z",
+        "MC_DOCKER_IMAGE": "docker.io/minio/mc:RELEASE.2021-06-08T01-29-37Z",
         "GATEWAY": None,
     },
 }
