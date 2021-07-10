@@ -4,5 +4,5 @@ variables:
     OPENEDX_RELEASE: lilac
 
 include:
-  - project: 'community/tutor-ci'
+  - project: 'aiwin/cloud/openedx/tutor-plugins'
     file: 'plugin-gitlab-ci.yml'
