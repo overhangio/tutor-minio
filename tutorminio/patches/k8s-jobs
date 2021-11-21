@@ -11,7 +11,7 @@ spec:
       restartPolicy: Never
       containers:
         - name: minio
-          image: { { MINIO_MC_DOCKER_IMAGE } }
+          image: {{ MINIO_MC_DOCKER_IMAGE }}
           command: []
           env:
             - name: MINIO_ROOT_USER
