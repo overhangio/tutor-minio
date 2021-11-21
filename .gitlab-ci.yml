@@ -1,7 +1,7 @@
 variables:
     TUTOR_PLUGIN: minio
     TUTOR_PYPI_PACKAGE: tutor-minio
-    OPENEDX_RELEASE: lilac
+    OPENEDX_RELEASE: maple
     GITHUB_REPO: overhangio/tutor-minio
 
 include:

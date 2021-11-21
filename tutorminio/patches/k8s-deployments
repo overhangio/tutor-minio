@@ -20,17 +20,18 @@ spec:
         - name: minio
           image: {{ MINIO_DOCKER_IMAGE }}
           {% if MINIO_GATEWAY %}
-          args: ["gateway", "{{ MINIO_GATEWAY }}", "--address", ":9000"]
+          args: ["gateway", "{{ MINIO_GATEWAY }}", "--address", ":9000", "--console-address", ":9001"]
           {% else %}
-          args: ["server", "--address", ":9000", "/data"]
+          args: ["server", "--address", ":9000", "--console-address", ":9001", "/data"]
           {% endif %}
           env:
-            - name: MINIO_ACCESS_KEY
+            - name: MINIO_ROOT_USER
               value: "{{ OPENEDX_AWS_ACCESS_KEY }}"
-            - name: MINIO_SECRET_KEY
+            - name: MINIO_ROOT_PASSWORD
               value: "{{ OPENEDX_AWS_SECRET_ACCESS_KEY }}"
           ports:
             - containerPort: 9000
+            - containerPort: 9001
           {% if not MINIO_GATEWAY %}
           volumeMounts:
             - mountPath: /data

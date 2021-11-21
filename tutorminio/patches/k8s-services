@@ -8,5 +8,9 @@ spec:
   ports:
     - port: 9000
       protocol: TCP
+      name: minio-server
+    - port: 9001
+      protocol: TCP
+      name: minio-console
   selector:
     app.kubernetes.io/name: minio

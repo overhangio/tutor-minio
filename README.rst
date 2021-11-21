@@ -23,9 +23,10 @@ Configuration
 - ``OPENEDX_AWS_SECRET_ACCESS_KEY` (default: ``"{{ 24|random_string }}"``)
 - ``MINIO_BUCKET_NAME`` (default: ``"openedx"``)
 - ``MINIO_FILE_UPLOAD_BUCKET_NAME`` (default: ``"openedxuploads"``)
-- ``MINIO_HOST`` (default: ``"minio.{{ LMS_HOST }}"``)
-- ``MINIO_DOCKER_IMAGE`` (default: ``"docker.io/minio/minio:RELEASE.2021-06-07T21-40-51Z"``)
-- ``MINIO_MC_DOCKER_IMAGE`` (default: ``"docker.io/minio/mc:RELEASE.2021-06-08T01-29-37Z"``)
+- ``MINIO_HOST`` (default: ``"files.{{ LMS_HOST }}"``)
+- ``MINIO_CONSOLE_HOST`` (default: ``"minio.{{ LMS_HOST }}"``)
+- ``MINIO_DOCKER_IMAGE`` (default: ``"docker.io/minio/minio:RELEASE.2021-11-09T03-21-45Z"``)
+- ``MINIO_MC_DOCKER_IMAGE`` (default: ``"docker.io/minio/mc:RELEASE.2021-11-16T20-37-36Z"``)
 
 These values can be modified with ``tutor config save --set PARAM_NAME=VALUE`` commands.
 
@@ -36,7 +37,7 @@ This is an experimental feature to run the MinIO server as a gateway to another 
 DNS records
 -----------
 
-It is assumed that the ``MINIO_HOST`` DNS record points to your server. When running MinIO on your laptop, MinIO will be available at http://minio.local.overhang.io. In development mode, the MinIO interface will be available at http://minio.local.overhang.io:9000.
+It is assumed that the ``MINIO_HOST`` DNS record points to your server. When running MinIO on your laptop, the MinIO Web UI will be available at http://minio.local.overhang.io. In development mode, the MinIO interface will be available at http://minio.local.overhang.io:9001.
 
 Web UI
 ------
