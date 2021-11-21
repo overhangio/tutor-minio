@@ -1,7 +1,7 @@
 # MinIO
 minio-job:
-  image: {{ MINIO_MC_DOCKER_IMAGE }}
+  image: { { MINIO_MC_DOCKER_IMAGE } }
   environment:
-    MINIO_ACCESS_KEY: "{{ OPENEDX_AWS_ACCESS_KEY }}"
-    MINIO_SECRET_KEY: "{{ OPENEDX_AWS_SECRET_ACCESS_KEY }}"
+    MINIO_ROOT_USER: "{{ OPENEDX_AWS_ACCESS_KEY }}"
+    MINIO_ROOT_PASSWORD: "{{ OPENEDX_AWS_SECRET_ACCESS_KEY }}"
   entrypoint: []
