@@ -24,8 +24,8 @@ Configuration
 - ``MINIO_BUCKET_NAME`` (default: ``"openedx"``)
 - ``MINIO_FILE_UPLOAD_BUCKET_NAME`` (default: ``"openedxuploads"``)
 - ``MINIO_HOST`` (default: ``"minio.{{ LMS_HOST }}"``)
-- ``MINIO_DOCKER_IMAGE`` (default: ``"docker.io/minio/minio:RELEASE.2021-06-07T21-40-51Z"``)
-- ``MINIO_MC_DOCKER_IMAGE`` (default: ``"docker.io/minio/mc:RELEASE.2021-06-08T01-29-37Z"``)
+- ``MINIO_DOCKER_IMAGE`` (default: ``"docker.io/minio/minio:RELEASE.2021-10-23T03-28-24Z"``)
+- ``MINIO_MC_DOCKER_IMAGE`` (default: ``"docker.io/minio/mc:RELEASE.2021-10-07T04-19-58Z"``)
 
 These values can be modified with ``tutor config save --set PARAM_NAME=VALUE`` commands.
 
