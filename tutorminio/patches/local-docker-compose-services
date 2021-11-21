@@ -9,8 +9,8 @@ minio:
     MINIO_ACCESS_KEY: "{{ OPENEDX_AWS_ACCESS_KEY }}"
     MINIO_SECRET_KEY: "{{ OPENEDX_AWS_SECRET_ACCESS_KEY }}"
   {% if MINIO_GATEWAY %}
-  command: gateway {{ MINIO_GATEWAY }} --address ":9000"
+  command: gateway {{ MINIO_GATEWAY }} --address ":9000" --console-address ":9001"
   {% else %}
-  command: server --address ":9000" /data
+  command: server --address ":9000" --console-address ":9001" /data
   {% endif %}
   restart: unless-stopped

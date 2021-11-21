@@ -1,4 +1,4 @@
 # MinIO
-{{ MINIO_HOST }}{% if not ENABLE_HTTPS %}:80{% endif %} {
-    reverse_proxy nginx:80
+{{ MINIO_HOST }}{$default_site_port} {
+    import proxy "minio:9001"
 }

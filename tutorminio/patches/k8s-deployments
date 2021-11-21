@@ -20,9 +20,9 @@ spec:
         - name: minio
           image: {{ MINIO_DOCKER_IMAGE }}
           {% if MINIO_GATEWAY %}
-          args: ["gateway", "{{ MINIO_GATEWAY }}", "--address", ":9000"]
+          args: ["gateway", "{{ MINIO_GATEWAY }}", "--address", "--console-address", ":9001", ":9000"]
           {% else %}
-          args: ["server", "--address", ":9000", "/data"]
+          args: ["server", "--address", ":9000", "--console-address", ":9001", "/data"]
           {% endif %}
           env:
             - name: MINIO_ACCESS_KEY
