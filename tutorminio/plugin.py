@@ -21,8 +21,8 @@ config = {
         "VIDEO_UPLOAD_BUCKET_NAME": "openedxvideos",
         "HOST": "files.{{ LMS_HOST }}",
         "CONSOLE_HOST": "minio.{{ LMS_HOST }}",
-        "DOCKER_IMAGE": "docker.io/minio/minio:RELEASE.2021-11-09T03-21-45Z",
-        "MC_DOCKER_IMAGE": "docker.io/minio/mc:RELEASE.2021-11-16T20-37-36Z",
+        "DOCKER_IMAGE": "docker.io/minio/minio:RELEASE.2022-05-08T23-50-31Z",
+        "MC_DOCKER_IMAGE": "docker.io/minio/mc:RELEASE.2022-05-09T04-08-26Z",
         "GATEWAY": None,
     },
 }
