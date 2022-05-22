@@ -33,7 +33,7 @@ setup(
     include_package_data=True,
     python_requires=">=3.7",
     install_requires=["tutor>=14.0.0,<15.0.0"],
-    entry_points={"tutor.plugin.v0": ["minio = tutorminio.plugin"]},
+    entry_points={"tutor.plugin.v1": ["minio = tutorminio.plugin"]},
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
