@@ -5,3 +5,4 @@ minio-job:
     MINIO_ROOT_USER: "{{ OPENEDX_AWS_ACCESS_KEY }}"
     MINIO_ROOT_PASSWORD: "{{ OPENEDX_AWS_SECRET_ACCESS_KEY }}"
   entrypoint: []
+  depends_on: ["minio"]
