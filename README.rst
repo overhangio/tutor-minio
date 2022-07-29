@@ -27,6 +27,7 @@ Configuration
 - ``MINIO_CONSOLE_HOST`` (default: ``"minio.{{ LMS_HOST }}"``)
 - ``MINIO_DOCKER_IMAGE`` (default: ``"docker.io/minio/minio:RELEASE.2022-05-08T23-50-31Z"``)
 - ``MINIO_MC_DOCKER_IMAGE`` (default: ``"docker.io/minio/mc:RELEASE.2022-05-09T04-08-26Z"``)
+- ``MINIO_DOMAIN`` (default: ``"{{ LMS_HOST }}"``)
 
 These values can be modified with ``tutor config save --set PARAM_NAME=VALUE`` commands.
 

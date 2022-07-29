@@ -27,6 +27,7 @@ config = {
         "DOCKER_IMAGE": "docker.io/minio/minio:RELEASE.2022-05-08T23-50-31Z",
         "MC_DOCKER_IMAGE": "docker.io/minio/mc:RELEASE.2022-05-09T04-08-26Z",
         "GATEWAY": None,
+        "DOMAIN": "{{ LMS_HOST }}",
     },
 }
 

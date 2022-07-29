@@ -8,6 +8,7 @@ minio:
   environment:
     MINIO_ROOT_USER: "{{ OPENEDX_AWS_ACCESS_KEY }}"
     MINIO_ROOT_PASSWORD: "{{ OPENEDX_AWS_SECRET_ACCESS_KEY }}"
+    MINIO_DOMAIN: "{{ MINIO_DOMAIN }}"
   {% if MINIO_GATEWAY %}
   command: gateway {{ MINIO_GATEWAY }} --address ":9000" --console-address ":9001"
   {% else %}

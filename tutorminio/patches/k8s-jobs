@@ -18,3 +18,5 @@ spec:
               value: "{{ OPENEDX_AWS_ACCESS_KEY }}"
             - name: MINIO_ROOT_PASSWORD
               value: "{{ OPENEDX_AWS_SECRET_ACCESS_KEY }}"
+            - name: MINIO_DOMAIN
+              value: "{{ MINIO_DOMAIN }}"
