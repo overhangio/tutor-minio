@@ -21,7 +21,7 @@ config = {
         "VERSION": __version__,
         "BUCKET_NAME": "openedx",
         "FILE_UPLOAD_BUCKET_NAME": "openedxuploads",
-        "VIDEO_UPLOAD_BUCKET_NAME": "openedxvideos",
+        "VIDEO_UPLOAD_BUCKET_NAME": "files",
         "HOST": "files.{{ LMS_HOST }}",
         "CONSOLE_HOST": "minio.{{ LMS_HOST }}",
         "DOCKER_IMAGE": "docker.io/minio/minio:RELEASE.2022-05-08T23-50-31Z",

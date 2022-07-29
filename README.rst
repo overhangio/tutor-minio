@@ -19,8 +19,8 @@ Then, to enable this plugin, run::
 Configuration
 -------------
 
-- ``OPENEDX_AWS_ACCESS_KEY` (default: ``"openedx"``)
-- ``OPENEDX_AWS_SECRET_ACCESS_KEY` (default: ``"{{ 24|random_string }}"``)
+- ``OPENEDX_AWS_ACCESS_KEY`` (default: ``"openedx"``)
+- ``OPENEDX_AWS_SECRET_ACCESS_KEY`` (default: ``"{{ 24|random_string }}"``)
 - ``MINIO_BUCKET_NAME`` (default: ``"openedx"``)
 - ``MINIO_FILE_UPLOAD_BUCKET_NAME`` (default: ``"openedxuploads"``)
 - ``MINIO_HOST`` (default: ``"files.{{ LMS_HOST }}"``)
