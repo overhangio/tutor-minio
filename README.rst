@@ -23,6 +23,7 @@ Configuration
 - ``OPENEDX_AWS_SECRET_ACCESS_KEY`` (default: ``"{{ 24|random_string }}"``)
 - ``MINIO_BUCKET_NAME`` (default: ``"openedx"``)
 - ``MINIO_FILE_UPLOAD_BUCKET_NAME`` (default: ``"openedxuploads"``)
+- ``MINIO_VIDEO_UPLOAD_BUCKET_NAME`` (default: ``"files"``)
 - ``MINIO_HOST`` (default: ``"files.{{ LMS_HOST }}"``)
 - ``MINIO_CONSOLE_HOST`` (default: ``"minio.{{ LMS_HOST }}"``)
 - ``MINIO_DOCKER_IMAGE`` (default: ``"docker.io/minio/minio:RELEASE.2022-05-08T23-50-31Z"``)
