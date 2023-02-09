@@ -46,3 +46,13 @@ The MinIO web UI can be accessed at http://<MINIO_HOST>. The credentials for acc
 
   tutor config printvalue OPENEDX_AWS_ACCESS_KEY
   tutor config printvalue OPENEDX_AWS_SECRET_ACCESS_KEY
+
+Troubleshooting
+---------------
+
+This Tutor plugin is maintained by Régis Behmo from `Overhang.IO <https://overhang.io>`__. Community support is available from the official `Open edX forum <https://discuss.openedx.org>`__. Do you need help with this plugin? See the `troubleshooting <https://docs.tutor.overhang.io/troubleshooting.html>`__ section from the Tutor documentation.
+
+License
+-------
+
+This work is licensed under the terms of the `GNU Affero General Public License (AGPL) <https://github.com/overhangio/tutor-minio/blob/master/LICENSE.txt>`_.

@@ -13,7 +13,6 @@ with io.open(
 ) as f:
     exec(f.read(), about)
 
-
 setup(
     name="tutor-minio",
     version=about["__version__"],
@@ -22,11 +21,13 @@ setup(
         "Documentation": "https://docs.tutor.overhang.io/",
         "Code": "https://github.com/overhangio/tutor-minio",
         "Issue tracker": "https://github.com/overhangio/tutor-minio/issues",
-        "Community": "https://discuss.overhang.io",
+        "Community": "https://discuss.openedx.org",
     },
     license="AGPLv3",
-    author="Overhang.io",
+    author="Overhang.IO",
     author_email="contact@overhang.io",
+    maintainer="Overhang.IO",
+    maintainer_email="regis@overhang.io",
     description="A Tutor plugin for object storage in MinIO",
     long_description=readme,
     packages=find_packages(exclude=["tests*"]),
