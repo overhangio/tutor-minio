@@ -31,6 +31,7 @@ Configuration
 These values can be modified with ``tutor config save --set PARAM_NAME=VALUE`` commands.
 
 - ``MINIO_GATEWAY`` (default: ``null``)
+- ``MINIO_K8S_VOLUME_SIZE``: Kubernetes persistent volume size (default: ``5Gi``)
 
 This is an experimental feature to run the MinIO server as a gateway to another object storage solution, such as `S3 <https://docs.minio.io/docs/minio-gateway-for-s3.html>`__ or `Azure <https://docs.minio.io/docs/minio-gateway-for-azure.html>`__.
 

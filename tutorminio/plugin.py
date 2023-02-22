@@ -28,6 +28,7 @@ tutor_hooks.Filters.CONFIG_DEFAULTS.add_items(
         # ("MINIO_DOCKER_IMAGE", "docker.io/minio/minio:RELEASE.2022-11-26T22-43-32Z"),
         # ("MINIO_MC_DOCKER_IMAGE", "docker.io/minio/mc:RELEASE.2022-11-17T21-20-39Z"),
         ("MINIO_GATEWAY", None),
+        ("MINIO_K8S_VOLUME_SIZE", "5Gi"),
     ]
 )
 

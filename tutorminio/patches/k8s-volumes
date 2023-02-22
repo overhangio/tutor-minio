@@ -12,5 +12,5 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 5Gi
+      storage: {{ MINIO_K8S_VOLUME_SIZE }}
 {% endif %}
