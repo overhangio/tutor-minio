@@ -20,13 +20,14 @@ tutor_hooks.Filters.CONFIG_DEFAULTS.add_items(
         ("MINIO_CONSOLE_HOST", "minio.{{ LMS_HOST }}"),
         # https://hub.docker.com/r/minio/minio/tags
         # https://hub.docker.com/r/minio/mc/tags
-        ("MINIO_DOCKER_IMAGE", "docker.io/minio/minio:RELEASE.2022-05-08T23-50-31Z"),
-        ("MINIO_MC_DOCKER_IMAGE", "docker.io/minio/mc:RELEASE.2022-05-09T04-08-26Z"),
-        # To upgrade to a more recent release of minio we will have to migrate from
-        # fs/gateway mode. It looks highly non-trivial...
+        # We must stick to these older releases because they are the last ones that support gateway mode to Azure:
+        # https://blog.min.io/deprecation-of-the-minio-gateway/
         # https://min.io/docs/minio/linux/operations/install-deploy-manage/migrate-fs-gateway.html
-        # ("MINIO_DOCKER_IMAGE", "docker.io/minio/minio:RELEASE.2022-11-26T22-43-32Z"),
-        # ("MINIO_MC_DOCKER_IMAGE", "docker.io/minio/mc:RELEASE.2022-11-17T21-20-39Z"),
+        (
+            "MINIO_DOCKER_IMAGE",
+            "docker.io/minio/minio:RELEASE.2022-03-26T06-49-28Z.hotfix.26ec6a857",
+        ),
+        ("MINIO_MC_DOCKER_IMAGE", "docker.io/minio/mc:RELEASE.2022-03-31T04-55-30Z"),
         ("MINIO_GATEWAY", None),
     ]
 )
