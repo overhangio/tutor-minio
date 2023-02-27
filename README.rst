@@ -32,7 +32,9 @@ These values can be modified with ``tutor config save --set PARAM_NAME=VALUE`` c
 
 - ``MINIO_GATEWAY`` (default: ``null``)
 
-This is an experimental feature to run the MinIO server as a gateway to another object storage solution, such as `S3 <https://docs.minio.io/docs/minio-gateway-for-s3.html>`__ or `Azure <https://docs.minio.io/docs/minio-gateway-for-azure.html>`__.
+This feature allows your to run the MinIO server as a gateway to another object storage solution, such as `S3 <https://docs.minio.io/docs/minio-gateway-for-s3.html>`__ or `Azure <https://docs.minio.io/docs/minio-gateway-for-azure.html>`__. That way, static assets can be stored on these object storage backends without extensive changes to the Open edX runtime environment.
+
+Note to Azure users: you will have to manually grant public access rights to the ``MINIO_BUCKET_NAME`` ("openedx") bucket.
 
 DNS records
 -----------
