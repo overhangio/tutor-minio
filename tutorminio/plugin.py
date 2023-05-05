@@ -1,5 +1,6 @@
 import os
 from glob import glob
+from typing import Literal
 
 import pkg_resources
 
@@ -43,6 +44,17 @@ tutor_hooks.Filters.CONFIG_OVERRIDES.add_items(
         ("OPENEDX_AWS_SECRET_ACCESS_KEY", "{{ MINIO_AWS_SECRET_ACCESS_KEY }}"),
     ]
 )
+
+@tutor_hooks.Filters.APP_PUBLIC_HOSTS.add()
+def add_minio_hosts(
+    hosts: list[str], context_name: Literal["local", "dev"]
+    ) -> list[str]:
+    if context_name == "dev":
+        hosts.append("{{ MINIO_CONSOLE_HOST }}:9001")
+    else:
+        hosts.append("{{ MINIO_CONSOLE_HOST }}")
+        
+    return hosts
 
 # Add pre-init script as init task with high priority
 with open(
