@@ -19,3 +19,8 @@ instructions, because git commits are used to generate release notes:
 
 <!-- scriv-insert-here -->
 
+<a id='changelog-16.0.1'></a>
+## v16.0.1 (2023-06-15)
+
+- [Bugfix] Fix "'type' object is not subscriptable" error. (by @regisb)
+- [Improvement] Add a scriv-compliant changelog. (by @regisb)
