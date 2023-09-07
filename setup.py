@@ -15,7 +15,7 @@ with io.open(
 
 setup(
     name="tutor-minio",
-    version=about["__version__"],
+    version=about["__package_version__"],
     url="https://docs.tutor.overhang.io/",
     project_urls={
         "Documentation": "https://docs.tutor.overhang.io/",
