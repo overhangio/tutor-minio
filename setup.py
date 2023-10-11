@@ -26,7 +26,7 @@ setup(
     license="AGPLv3",
     author="Overhang.IO",
     author_email="contact@overhang.io",
-    maintainer="Overhang.IO",
+    maintainer="Edly.IO",
     maintainer_email="fahad.khalid@arbisoft.com",
     description="A Tutor plugin for object storage in MinIO",
     long_description=readme,
