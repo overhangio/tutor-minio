@@ -4,13 +4,21 @@ minio:
   {% if not MINIO_GATEWAY %}
   volumes:
     - ../../data/minio:/data
+  {% elif MINIO_GATEWAY == "gcs" %}
+  volumes:
+    - ../plugins/minio/apps/minio_secrets:/minio_secrets
   {% endif %}
   environment:
     MINIO_ROOT_USER: "{{ OPENEDX_AWS_ACCESS_KEY }}"
     MINIO_ROOT_PASSWORD: "{{ OPENEDX_AWS_SECRET_ACCESS_KEY }}"
-  {% if MINIO_GATEWAY %}
-  command: gateway {{ MINIO_GATEWAY }} --address ":9000" --console-address ":9001"
-  {% else %}
+    {% if MINIO_GATEWAY == "gcs" %}
+    GOOGLE_APPLICATION_CREDENTIALS: /minio_secrets/google_application_credentials.json
+    {% endif %}
+  {% if not MINIO_GATEWAY %}
   command: server --address ":9000" --console-address ":9001" /data
+  {% elif MINIO_GATEWAY == "gcs" %}
+  command: gateway gcs {{ MINIO_GCS_APPLICATION_ID }} --address ":9000" --console-address ":9001"
+  {% else %}
+  command: gateway {{ MINIO_GATEWAY }} --address ":9000" --console-address ":9001"
   {% endif %}
   restart: unless-stopped

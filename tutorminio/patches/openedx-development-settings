@@ -1,1 +1,2 @@
 AWS_S3_ENDPOINT_URL = "{{ "https" if ENABLE_HTTPS else "http" }}://{{ MINIO_HOST }}:9000"
+MinIOStorage.endpoint_url = AWS_S3_ENDPOINT_URL

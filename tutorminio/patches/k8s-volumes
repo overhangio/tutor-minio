@@ -14,3 +14,14 @@ spec:
     requests:
       storage: 5Gi
 {% endif %}
+
+{% if MINIO_GATEWAY == "gcs" %}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: minio-secrets
+data:
+  google_application_credentials.json: |
+    {{ MINIO_GCS_APPLICATION_CREDENTIALS|indent(4) }}
+{% endif %}

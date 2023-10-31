@@ -18,3 +18,7 @@ spec:
               value: "{{ OPENEDX_AWS_ACCESS_KEY }}"
             - name: MINIO_ROOT_PASSWORD
               value: "{{ OPENEDX_AWS_SECRET_ACCESS_KEY }}"
+          {% if MINIO_GATEWAY == "gcs" %}
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: "/minio_secrets/google_application_credentials.json"
+          {% endif %}
