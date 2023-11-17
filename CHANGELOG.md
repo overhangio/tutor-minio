@@ -19,6 +19,12 @@ instructions, because git commits are used to generate release notes:
 
 <!-- scriv-insert-here -->
 
+<a id='changelog-17.0.0'></a>
+## v17.0.0 (2023-12-09)
+
+- 💥[Feature] Upgrade to Quince. (by @Fahadkhalid210)
+- [Bugfix] Make LMS/Studio connnect to the right port in dev mode. (by @ormsbee)
+
 <a id='changelog-16.0.2'></a>
 ## v16.0.2 (2023-12-08)
 
