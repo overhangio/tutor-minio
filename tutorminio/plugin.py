@@ -1,11 +1,10 @@
 from __future__ import annotations
 
 import os
+import typing as t
 from glob import glob
-from typing import Literal
 
 import pkg_resources
-
 from tutor import hooks as tutor_hooks
 from tutor.__about__ import __version_suffix__
 
