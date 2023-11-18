@@ -16,39 +16,41 @@ if __version_suffix__:
 
 HERE = os.path.abspath(os.path.dirname(__file__))
 
-
-tutor_hooks.Filters.CONFIG_DEFAULTS.add_items(
-    [
-        ("MINIO_VERSION", __version__),
-        ("MINIO_BUCKET_NAME", "openedx"),
-        ("MINIO_FILE_UPLOAD_BUCKET_NAME", "openedxuploads"),
-        ("MINIO_VIDEO_UPLOAD_BUCKET_NAME", "openedxvideos"),
-        ("MINIO_HOST", "files.{{ LMS_HOST }}"),
-        ("MINIO_CONSOLE_HOST", "minio.{{ LMS_HOST }}"),
+config: t.Dict[str, t.Dict[str, t.Any]] = {
+    "defaults": {
+        "VERSION": __version__,
+        "BUCKET_NAME": "openedx",
+        "FILE_UPLOAD_BUCKET_NAME": "openedxuploads",
+        "VIDEO_UPLOAD_BUCKET_NAME": "openedxvideos",
+        "HOST": "files.{{ LMS_HOST }}",
+        "CONSOLE_HOST": "minio.{{ LMS_HOST }}",
         # https://hub.docker.com/r/minio/minio/tags
         # https://hub.docker.com/r/minio/mc/tags
         # We must stick to these older releases because they are the last ones that support gateway mode to Azure:
         # https://blog.min.io/deprecation-of-the-minio-gateway/
         # https://min.io/docs/minio/linux/operations/install-deploy-manage/migrate-fs-gateway.html
-        (
-            "MINIO_DOCKER_IMAGE",
-            "docker.io/minio/minio:RELEASE.2022-03-26T06-49-28Z.hotfix.26ec6a857",
-        ),
-        ("MINIO_MC_DOCKER_IMAGE", "docker.io/minio/mc:RELEASE.2022-03-31T04-55-30Z"),
-        ("MINIO_GATEWAY", None),
-    ]
-)
+        "DOCKER_IMAGE": "docker.io/minio/minio:RELEASE.2022-03-26T06-49-28Z.hotfix.26ec6a857",
+        "MC_DOCKER_IMAGE": "docker.io/minio/mc:RELEASE.2022-03-31T04-55-30Z",
+        "GATEWAY": None,
+    },
+    "unique": {
+        "AWS_SECRET_ACCESS_KEY": "{{ 24|random_string }}",
+    },
+    "overrides": {
+        "OPENEDX_AWS_ACCESS_KEY": "openedx",
+        "OPENEDX_AWS_SECRET_ACCESS_KEY": "{{ MINIO_AWS_SECRET_ACCESS_KEY }}",
+    },
+}
 
+# Add configuration entries
+tutor_hooks.Filters.CONFIG_DEFAULTS.add_items(
+    [(f"MINIO_{key}", value) for key, value in config.get("defaults", {}).items()]
+)
 tutor_hooks.Filters.CONFIG_UNIQUE.add_items(
-    [
-        ("MINIO_AWS_SECRET_ACCESS_KEY", "{{ 24|random_string }}"),
-    ]
+    [(f"MINIO_{key}", value) for key, value in config.get("unique", {}).items()]
 )
 tutor_hooks.Filters.CONFIG_OVERRIDES.add_items(
-    [
-        ("OPENEDX_AWS_ACCESS_KEY", "openedx"),
-        ("OPENEDX_AWS_SECRET_ACCESS_KEY", "{{ MINIO_AWS_SECRET_ACCESS_KEY }}"),
-    ]
+    list(config.get("overrides", {}).items())
 )
 
 @tutor_hooks.Filters.APP_PUBLIC_HOSTS.add()
