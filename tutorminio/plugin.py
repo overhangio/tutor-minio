@@ -16,7 +16,7 @@ if __version_suffix__:
 
 HERE = os.path.abspath(os.path.dirname(__file__))
 
-config: t.Dict[str, t.Dict[str, t.Any]] = {
+config: dict[str, dict[str, t.Any]] = {
     "defaults": {
         "VERSION": __version__,
         "BUCKET_NAME": "openedx",
@@ -53,16 +53,17 @@ tutor_hooks.Filters.CONFIG_OVERRIDES.add_items(
     list(config.get("overrides", {}).items())
 )
 
+
 @tutor_hooks.Filters.APP_PUBLIC_HOSTS.add()
 def add_minio_hosts(
-    hosts: list[str], context_name: Literal["local", "dev"]
-    ) -> list[str]:
+    hosts: list[str], context_name: t.Literal["local", "dev"]
+) -> list[str]:
     if context_name == "dev":
         hosts.append("{{ MINIO_CONSOLE_HOST }}:9001")
     else:
         hosts.append("{{ MINIO_CONSOLE_HOST }}")
-        
     return hosts
+
 
 # Add pre-init script as init task with high priority
 with open(
