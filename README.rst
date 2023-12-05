@@ -1,9 +1,9 @@
 Object storage for Open edX with `MinIO <https://www.minio.io/>`_
 =================================================================
 
-This is a plugin for `Tutor <https://docs.tutor.overhang.io>`_ that provides S3-like object storage for Open edX platforms. It's S3, but without the dependency on AWS. This is achieved thanks to `MinIO <https://www.minio.io/>`_, an open source project that provides object storage with an API compatible with S3.
+This is a plugin for `Tutor <https://docs.tutor.edly.io>`_ that provides S3-like object storage for Open edX platforms. It's S3, but without the dependency on AWS. This is achieved thanks to `MinIO <https://www.minio.io/>`_, an open source project that provides object storage with an API compatible with S3.
 
-In particular, this plugin is essential for `Kubernetes deployment <https://docs.tutor.overhang.io/k8s.html>`_.
+In particular, this plugin is essential for `Kubernetes deployment <https://docs.tutor.edly.io/k8s.html>`_.
 
 Installation
 ------------
@@ -52,7 +52,7 @@ The MinIO web UI can be accessed at http://<MINIO_HOST>. The credentials for acc
 Troubleshooting
 ---------------
 
-This Tutor plugin is maintained by Fahad Khalid from `Edly <https://edly.io>`__. Community support is available from the official `Open edX forum <https://discuss.openedx.org>`__. Do you need help with this plugin? See the `troubleshooting <https://docs.tutor.overhang.io/troubleshooting.html>`__ section from the Tutor documentation.
+This Tutor plugin is maintained by Fahad Khalid from `Edly <https://edly.io>`__. Community support is available from the official `Open edX forum <https://discuss.openedx.org>`__. Do you need help with this plugin? See the `troubleshooting <https://docs.tutor.edly.io/troubleshooting.html>`__ section from the Tutor documentation.
 
 License
 -------
