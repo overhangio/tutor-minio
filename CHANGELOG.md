@@ -19,6 +19,11 @@ instructions, because git commits are used to generate release notes:
 
 <!-- scriv-insert-here -->
 
+<a id='changelog-16.0.2'></a>
+## v16.0.2 (2023-12-08)
+
+- [Improvement] Added Typing to code, Makefile and test action to the repository and formatted code with Black and isort. (by @CodeWithEmad)
+
 <a id='changelog-16.0.1'></a>
 ## v16.0.1 (2023-06-15)
 
