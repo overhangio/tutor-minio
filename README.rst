@@ -39,7 +39,7 @@ Note to Azure users: you will have to manually grant public access rights to the
 DNS records
 -----------
 
-It is assumed that the ``MINIO_HOST`` DNS record points to your server. When running MinIO on your laptop, the MinIO Web UI will be available at http://minio.local.overhang.io. In development mode, the MinIO interface will be available at http://minio.local.overhang.io:9001.
+It is assumed that the ``MINIO_HOST`` DNS record points to your server. When running MinIO on your laptop, the MinIO Web UI will be available at http://minio.local.edly.io. In development mode, the MinIO interface will be available at http://minio.local.edly.io:9001.
 
 Web UI
 ------
