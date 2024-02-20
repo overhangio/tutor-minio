@@ -1,7 +1,6 @@
 variables:
     TUTOR_PLUGIN: minio
     TUTOR_PYPI_PACKAGE: tutor-minio
-    OPENEDX_RELEASE: quince
     GITHUB_REPO: overhangio/tutor-minio
 
 include:
