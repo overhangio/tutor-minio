@@ -24,6 +24,8 @@ config: dict[str, dict[str, t.Any]] = {
         "VIDEO_UPLOAD_BUCKET_NAME": "openedxvideos",
         "HOST": "files.{{ LMS_HOST }}",
         "CONSOLE_HOST": "minio.{{ LMS_HOST }}",
+        "GRADES_BUCKET_NAME": "openedxgrades",
+        "QUERYSTRING_AUTH": True,
         # https://hub.docker.com/r/minio/minio/tags
         # https://hub.docker.com/r/minio/mc/tags
         # We must stick to these older releases because they are the last ones that support gateway mode to Azure:
