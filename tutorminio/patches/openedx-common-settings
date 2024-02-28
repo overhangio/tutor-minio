@@ -12,3 +12,14 @@ AWS_S3_ENDPOINT_URL = "{{ "https" if ENABLE_HTTPS else "http" }}://{{ MINIO_HOST
 AWS_AUTO_CREATE_BUCKET = False # explicit is better than implicit
 AWS_DEFAULT_ACL = None
 AWS_QUERYSTRING_EXPIRE = 7 * 24 * 60 * 60  # 1 week: this is necessary to generate valid download urls
+
+# User tasks assets storage
+# In theory we could use cms.djangoapps.contentstore.storage.ImportExportS3Storage,
+# but this class makes use of boto, which does not support sig3v4 auth.
+from storages.backends.s3boto3 import S3Boto3Storage
+class MinIOStorage(S3Boto3Storage):  # pylint: disable=abstract-method
+    def __init__(self):
+        bucket = "{{ MINIO_BUCKET_NAME }}"
+        super().__init__(bucket=bucket, custom_domain=None, querystring_auth=True)
+
+USER_TASKS_ARTIFACT_STORAGE = f"{__name__}.MinIOStorage"
