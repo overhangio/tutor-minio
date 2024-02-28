@@ -16,6 +16,7 @@ AWS_QUERYSTRING_EXPIRE = 7 * 24 * 60 * 60  # 1 week: this is necessary to genera
 # User tasks assets storage
 # In theory we could use cms.djangoapps.contentstore.storage.ImportExportS3Storage,
 # but this class makes use of boto, which does not support sig3v4 auth.
+
 from storages.backends.s3boto3 import S3Boto3Storage
 class MinIOStorage(S3Boto3Storage):  # pylint: disable=abstract-method
     def __init__(self):
