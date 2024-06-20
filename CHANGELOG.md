@@ -19,6 +19,14 @@ instructions, because git commits are used to generate release notes:
 
 <!-- scriv-insert-here -->
 
+<a id='changelog-18.0.0'></a>
+## v18.0.0 (2024-06-20)
+
+- 💥[Feature] Upgrade to Redwood (by @Fahadkhalid210)
+- [Bugfix] Make plugin compatible with Python 3.12 by removing dependency on `pkg_resources`. (by @regisb)
+- [Bugfix] Fix a 500 error on downloading profile information as CSV when the minio plugin is enabled. (by @FahadKhalid210)
+- [Feature] add separated grades bucket and manage querystring by config variable. (by @henrrypg)
+
 <a id='changelog-17.0.0'></a>
 ## v17.0.0 (2023-12-09)
 
