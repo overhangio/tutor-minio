@@ -1,0 +1,10 @@
+# MinIO object storage
+DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+AWS_ACCESS_KEY_ID = "{{ OPENEDX_AWS_ACCESS_KEY }}"
+AWS_SECRET_ACCESS_KEY = "{{ OPENEDX_AWS_SECRET_ACCESS_KEY }}"
+AWS_S3_SIGNATURE_VERSION = "s3v4"
+AWS_S3_ENDPOINT_URL = "{% if ENABLE_HTTPS %}https{% else %}http{% endif %}://{{ MINIO_HOST }}"
+AWS_STORAGE_BUCKET_NAME = "discoveryuploads"
+AWS_S3_CUSTOM_DOMAIN = "{{ MINIO_HOST }}/discoveryuploads"
+AWS_S3_URL_PROTOCOL = "{% if ENABLE_HTTPS %}https{% else %}http{% endif %}:"
+AWS_QUERYSTRING_EXPIRE = 7 * 24 * 60 * 60  # 1 week: this is necessary to generate valid download urls
