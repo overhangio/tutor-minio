@@ -19,11 +19,11 @@ HERE = os.path.abspath(os.path.dirname(__file__))
 config: dict[str, dict[str, t.Any]] = {
     "defaults": {
         "VERSION": __version__,
+        "HOST": "files.{{ LMS_HOST }}",
+        "CONSOLE_HOST": "minio.{{ LMS_HOST }}",
         "BUCKET_NAME": "openedx",
         "FILE_UPLOAD_BUCKET_NAME": "openedxuploads",
         "VIDEO_UPLOAD_BUCKET_NAME": "openedxvideos",
-        "HOST": "files.{{ LMS_HOST }}",
-        "CONSOLE_HOST": "minio.{{ LMS_HOST }}",
         "GRADES_BUCKET_NAME": "openedxgrades",
         "QUERYSTRING_AUTH": True,
         # https://hub.docker.com/r/minio/minio/tags

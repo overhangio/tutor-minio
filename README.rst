@@ -1,18 +1,25 @@
 Object storage for Open edX with `MinIO <https://www.minio.io/>`_
 =================================================================
 
-This is a plugin for `Tutor <https://docs.tutor.edly.io>`_ that provides S3-like object storage for Open edX platforms. It's S3, but without the dependency on AWS. This is achieved thanks to `MinIO <https://www.minio.io/>`_, an open source project that provides object storage with an API compatible with S3.
+This is a plugin for `Tutor <https://docs.tutor.edly.io>`_ that provides S3-like object storage for Open edX platforms.
+It's S3, but without the dependency on AWS. This is achieved thanks to `MinIO <https://www.minio.io/>`_,
+an open source project that provides object storage with an API compatible with S3.
 
 In particular, this plugin is essential for `Kubernetes deployment <https://docs.tutor.edly.io/k8s.html>`_.
 
 Installation
 ------------
 
-The plugin is currently bundled with the `binary releases of Tutor <https://github.com/overhangio/tutor/releases>`_. If you have installed Tutor from source, you will have to install this plugin from source, too::
+The plugin is currently bundled with the `binary releases of Tutor <https://github.com/overhangio/tutor/releases>`_.
+If you have installed Tutor from source, you will have to install this plugin from source, too:
+
+.. code-block:: bash
 
     tutor plugins install minio
 
-Then, to enable this plugin, run::
+Then, to enable this plugin, run:
+
+.. code-block:: bash
 
     tutor plugins enable minio
 
@@ -33,7 +40,9 @@ These values can be modified with ``tutor config save --set PARAM_NAME=VALUE`` c
 
 - ``MINIO_GATEWAY`` (default: ``null``)
 
-This feature allows your to run the MinIO server as a gateway to another object storage solution, such as `S3 <https://docs.minio.io/docs/minio-gateway-for-s3.html>`__ or `Azure <https://docs.minio.io/docs/minio-gateway-for-azure.html>`__. That way, static assets can be stored on these object storage backends without extensive changes to the Open edX runtime environment.
+This feature allows your to run the MinIO server as a gateway to another object storage solution,
+such as `S3 <https://docs.minio.io/docs/minio-gateway-for-s3.html>`__ or `Azure <https://docs.minio.io/docs/minio-gateway-for-azure.html>`__.
+That way, static assets can be stored on these object storage backends without extensive changes to the Open edX runtime environment.
 
 Note to Azure users: you will have to manually grant public access rights to the ``MINIO_BUCKET_NAME`` ("openedx") bucket.
 
@@ -45,7 +54,9 @@ It is assumed that the ``MINIO_HOST`` DNS record points to your server. When run
 Web UI
 ------
 
-The MinIO web UI can be accessed at http://<MINIO_HOST>. The credentials for accessing the UI can be obtained with::
+The MinIO web UI can be accessed at http://<MINIO_HOST>. The credentials for accessing the UI can be obtained with:
+
+.. code-block:: python
 
   tutor config printvalue OPENEDX_AWS_ACCESS_KEY
   tutor config printvalue OPENEDX_AWS_SECRET_ACCESS_KEY
@@ -53,7 +64,9 @@ The MinIO web UI can be accessed at http://<MINIO_HOST>. The credentials for acc
 Troubleshooting
 ---------------
 
-This Tutor plugin is maintained by Fahad Khalid from `Edly <https://edly.io>`__. Community support is available from the official `Open edX forum <https://discuss.openedx.org>`__. Do you need help with this plugin? See the `troubleshooting <https://docs.tutor.edly.io/troubleshooting.html>`__ section from the Tutor documentation.
+This Tutor plugin is maintained by Fahad Khalid from `Edly <https://edly.io>`__.
+Community support is available from the official `Open edX forum <https://discuss.openedx.org>`__.
+Do you need help with this plugin? See the `troubleshooting <https://docs.tutor.edly.io/troubleshooting.html>`__ section from the Tutor documentation.
 
 License
 -------
