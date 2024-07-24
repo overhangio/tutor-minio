@@ -15,6 +15,7 @@ if __version_suffix__:
     __version__ += "-" + __version_suffix__
 
 HERE = os.path.abspath(os.path.dirname(__file__))
+LOADED_PLUGINS = [plugin for plugin in tutor_hooks.Filters.PLUGINS_LOADED.iterate()]
 
 config: dict[str, dict[str, t.Any]] = {
     "defaults": {
@@ -34,6 +35,7 @@ config: dict[str, dict[str, t.Any]] = {
         "DOCKER_IMAGE": "docker.io/minio/minio:RELEASE.2022-03-26T06-49-28Z.hotfix.26ec6a857",
         "MC_DOCKER_IMAGE": "docker.io/minio/mc:RELEASE.2022-03-31T04-55-30Z",
         "GATEWAY": None,
+        "DISCOVERY_BUCKET_NAME": ("discovery" in LOADED_PLUGINS) and "discoveryuploads",
     },
     "unique": {
         "AWS_SECRET_ACCESS_KEY": "{{ 24|random_string }}",
