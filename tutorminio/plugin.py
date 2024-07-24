@@ -5,7 +5,7 @@ import typing as t
 from glob import glob
 
 import importlib_resources
-from tutor import hooks as tutor_hooks, plugins
+from tutor import hooks as tutor_hooks
 from tutor.__about__ import __version_suffix__
 
 from .__about__ import __version__
@@ -15,6 +15,7 @@ if __version_suffix__:
     __version__ += "-" + __version_suffix__
 
 HERE = os.path.abspath(os.path.dirname(__file__))
+LOADED_PLUGINS = [plugin for plugin in tutor_hooks.Filters.PLUGINS_LOADED.iterate()]
 
 config: dict[str, dict[str, t.Any]] = {
     "defaults": {
@@ -34,7 +35,7 @@ config: dict[str, dict[str, t.Any]] = {
         "DOCKER_IMAGE": "docker.io/minio/minio:RELEASE.2022-03-26T06-49-28Z.hotfix.26ec6a857",
         "MC_DOCKER_IMAGE": "docker.io/minio/mc:RELEASE.2022-03-31T04-55-30Z",
         "GATEWAY": None,
-        "DISCOVERY_BUCKET_NAME": "discoveryuploads",
+        "DISCOVERY_BUCKET_NAME": ("discovery" in LOADED_PLUGINS) and "discoveryuploads",
     },
     "unique": {
         "AWS_SECRET_ACCESS_KEY": "{{ 24|random_string }}",
@@ -94,12 +95,3 @@ for path in glob(str(importlib_resources.files("tutorminio") / "patches" / "*"))
         tutor_hooks.Filters.ENV_PATCHES.add_item(
             (os.path.basename(path), patch_file.read())
         )
-
-
-def is_discovery_enabled() -> bool:
-    return plugins.is_loaded("discovery")
-
-
-tutor_hooks.Filters.ENV_TEMPLATE_VARIABLES.add_item(
-    ("is_discovery_enabled", is_discovery_enabled())
-)

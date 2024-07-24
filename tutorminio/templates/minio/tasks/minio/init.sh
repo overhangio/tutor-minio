@@ -9,7 +9,7 @@ echo "⚠️  It is your responsibility to grant public read access rights to th
 {% endif %}
 
 # discovery bucket
-{% if is_discovery_enabled %}
+{% if MINIO_DISCOVERY_BUCKET_NAME %}
 mc mb --ignore-existing minio/{{ MINIO_DISCOVERY_BUCKET_NAME }}
 {% if MINIO_GATEWAY != "azure" %}
 # Make discovery media upload bucket public
