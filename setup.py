@@ -27,7 +27,7 @@ setup(
     author="Overhang.IO",
     author_email="contact@overhang.io",
     maintainer="Edly",
-    maintainer_email="fahad.khalid@arbisoft.com",
+    maintainer_email="faraz.maqsood@arbisoft.com",
     description="A Tutor plugin for object storage in MinIO",
     long_description=readme,
     long_description_content_type="text/x-rst",
