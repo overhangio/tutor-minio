@@ -1,0 +1,9 @@
+# LMS-specific media storage
+PROFILE_IMAGE_BACKEND = {
+    "class": "{{ DEFAULT_FILE_STORAGE }}",
+    "options": {
+        "bucket_name": "{{ MINIO_BUCKET_NAME }}",
+        "querystring_auth": False,
+        "location": PROFILE_IMAGE_BACKEND["options"]["location"].lstrip("/"),
+    },
+}
