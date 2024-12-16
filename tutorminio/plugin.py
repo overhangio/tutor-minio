@@ -24,6 +24,7 @@ config: dict[str, dict[str, t.Any]] = {
         "VIDEO_UPLOAD_BUCKET_NAME": "openedxvideos",
         "HOST": "files.{{ LMS_HOST }}",
         "CONSOLE_HOST": "minio.{{ LMS_HOST }}",
+        "OPENEDX_LEARNING_BUCKET_NAME": "openedxlearning",
         "GRADES_BUCKET_NAME": "openedxgrades",
         "QUERYSTRING_AUTH": True,
         # https://hub.docker.com/r/minio/minio/tags
