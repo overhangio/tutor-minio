@@ -9,7 +9,7 @@ authors = [
   {name = "Edly", email = "hello@edly.io"},
 ]
 maintainers = [
-  {name = "Muhammad Faraz Maqsood", email = "faraz.maqsood@arbisoft.com"}
+  {name = "Danyal Faheem", email = "danyal.faheem@arbisoft.com"}
 ]
 description = "A Tutor plugin for object storage in MinIO"
 readme = {file = "README.rst", content-type = "text/x-rst"}
