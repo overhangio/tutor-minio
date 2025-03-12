@@ -19,6 +19,14 @@ instructions, because git commits are used to generate release notes:
 
 <!-- scriv-insert-here -->
 
+<a id='changelog-19.0.1'></a>
+## v19.0.1 (2025-03-12)
+
+- [Improvement] Migrate packaging from setup.py/setuptools to pyproject.toml/hatch. (by @Danyal-Faheem)
+  - For more details view tutor core PR: https://github.com/overhangio/tutor/pull/1163
+
+- [Improvement] Add hatch_build.py in sdist target to fix the installation issues (by @dawoudsheraz)
+
 <a id='changelog-19.0.0'></a>
 ## v19.0.0 (2024-10-31)
 - [Feature] Add a new bucket to handle private media for openedx-learning. (by @Faraz32123)
