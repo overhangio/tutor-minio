@@ -8,3 +8,11 @@ AWS_STORAGE_BUCKET_NAME = "discoveryuploads"
 AWS_S3_CUSTOM_DOMAIN = "{{ MINIO_HOST }}/discoveryuploads"
 AWS_S3_URL_PROTOCOL = "{% if ENABLE_HTTPS %}https{% else %}http{% endif %}:"
 AWS_QUERYSTRING_EXPIRE = 7 * 24 * 60 * 60  # 1 week: this is necessary to generate valid download urls
+
+from botocore.client import Config as BotoConfig # Importing explicitly just to be safe
+
+AWS_S3_CLIENT_CONFIG = BotoConfig(
+    request_checksum_calculation='when_required',
+    response_checksum_validation='when_required',
+    signature_version='s3v4', # We need to explicitly add this here otherwise BotoConfig overrides it to default
+)
