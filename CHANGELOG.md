@@ -19,6 +19,13 @@ instructions, because git commits are used to generate release notes:
 
 <!-- scriv-insert-here -->
 
+<a id='changelog-20.0.0'></a>
+## v20.0.0 (2025-03-26)
+
+- 💥[Feature] Upgrade to teak. (by @Danyal-Faheem)
+
+- [Improvement] Remove the unnecessary richie-settings-common patch as the richie plugin is now deprecated. (by @Danyal-Faheem)
+
 <a id='changelog-19.0.1'></a>
 ## v19.0.1 (2025-03-12)
 
