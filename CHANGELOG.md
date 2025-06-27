@@ -19,6 +19,17 @@ instructions, because git commits are used to generate release notes:
 
 <!-- scriv-insert-here -->
 
+<a id='changelog-20.0.0'></a>
+## v20.0.0 (2025-06-05)
+
+- [Bugfix] Add AWS_S3_CLIENT_CONFIG to only require checksum validation when it is required. This was a breaking change required from boto3>1.36. (by @Danyal-Faheem)
+- [Improvement] Use the MINIO_DISCOVERY_BUCKET_NAME setting instead of a hardcoded value to set the bucket name for discovery uploads. (by @Danyal-Faheem)
+- [Bugfix] Use the development URL for minio in discovery settings when running in development mode. (by @Danyal-Faheem)
+
+- 💥[Feature] Upgrade to teak. (by @Danyal-Faheem)
+
+- [Improvement] Remove the unnecessary richie-settings-common patch as the richie plugin is now deprecated. (by @Danyal-Faheem)
+
 <a id='changelog-19.0.1'></a>
 ## v19.0.1 (2025-03-12)
 
