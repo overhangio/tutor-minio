@@ -33,8 +33,7 @@ dynamic = ["version"]
 [project.optional-dependencies]
 dev = [
   "tutor[dev]>=20.0.0,<21.0.0", 
-  "pylint", 
-  "black"
+  "ruff"
 ]
 
 [project.entry-points."tutor.plugin.v1"]
