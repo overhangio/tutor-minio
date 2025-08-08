@@ -29,13 +29,14 @@ config: dict[str, dict[str, t.Any]] = {
         "QUERYSTRING_AUTH": True,
         # https://hub.docker.com/r/minio/minio/tags
         # https://hub.docker.com/r/minio/mc/tags
-        # We must stick to these older releases because they are the last ones that support gateway mode to Azure:
+        # We must stick to these older releases because they are the last ones that
+        # support gateway mode to Azure:
         # https://blog.min.io/deprecation-of-the-minio-gateway/
         # https://min.io/docs/minio/linux/operations/install-deploy-manage/migrate-fs-gateway.html
-        "DOCKER_IMAGE": "docker.io/minio/minio:RELEASE.2022-03-26T06-49-28Z.hotfix.26ec6a857",
+        "DOCKER_IMAGE": "docker.io/minio/minio:RELEASE.2022-03-26T06-49-28Z.hotfix.26ec6a857",  # noqa: E501
         "MC_DOCKER_IMAGE": "docker.io/minio/mc:RELEASE.2022-03-31T04-55-30Z",
         "GATEWAY": None,
-        "DISCOVERY_BUCKET_NAME": "{% if 'discovery' in PLUGINS %}discoveryuploads{% endif %}",
+        "DISCOVERY_BUCKET_NAME": "{% if 'discovery' in PLUGINS %}discoveryuploads{% endif %}",  # noqa: E501
     },
     "unique": {
         "AWS_SECRET_ACCESS_KEY": "{{ 24|random_string }}",
