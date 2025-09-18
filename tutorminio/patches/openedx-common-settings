@@ -1,9 +1,9 @@
-DEFAULT_FILE_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+STORAGES["default"]["BACKEND"] = "storages.backends.s3boto3.S3Boto3Storage"
 VIDEO_IMAGE_SETTINGS["STORAGE_KWARGS"]["location"] = VIDEO_IMAGE_SETTINGS["STORAGE_KWARGS"]["location"].lstrip("/")
 VIDEO_TRANSCRIPTS_SETTINGS["STORAGE_KWARGS"]["location"] = VIDEO_TRANSCRIPTS_SETTINGS["STORAGE_KWARGS"]["location"].lstrip("/")
 GRADES_DOWNLOAD["STORAGE_KWARGS"] = {"location": GRADES_DOWNLOAD["STORAGE_KWARGS"]["location"].lstrip("/")}
 GRADES_DOWNLOAD["STORAGE_KWARGS"]["bucket_name"] = "{{ MINIO_GRADES_BUCKET_NAME }}"
-OPENEDX_LEARNING["MEDIA"]["BACKEND"] = DEFAULT_FILE_STORAGE
+OPENEDX_LEARNING["MEDIA"]["BACKEND"] = STORAGES["default"]["BACKEND"]
 OPENEDX_LEARNING["MEDIA"]["OPTIONS"] = {
     'bucket_name': "{{ MINIO_OPENEDX_LEARNING_BUCKET_NAME }}",
 }                                    

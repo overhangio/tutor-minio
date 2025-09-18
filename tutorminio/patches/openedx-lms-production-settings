@@ -1,5 +1,5 @@
 PROFILE_IMAGE_BACKEND = {
-    "class": DEFAULT_FILE_STORAGE,
+    "class": STORAGES["default"]["BACKEND"],
     "options": {
         "bucket_name": "{{ MINIO_BUCKET_NAME }}",
         "querystring_auth": False,
