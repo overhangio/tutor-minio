@@ -19,6 +19,16 @@ instructions, because git commits are used to generate release notes:
 
 <!-- scriv-insert-here -->
 
+<a id='changelog-21.0.0'></a>
+## v21.0.0 (2025-10-15)
+
+- [Improvement] Migrate from pylint and black to ruff. (by @Danyal-Faheem)
+- [Improvement] Test python package distribution build when running make test. (by @Danyal-Faheem)
+
+- 💥[Bugfix] Migrate from using DEFAULT_FILE_STORAGE to STORAGES as part of the major Django 5.2 upgrade in Open edX. (by @rehmansheikh222)
+
+- 💥[Feature] Upgrade to Ulmo. (by @rehmansheikh222)
+
 <a id='changelog-20.0.0'></a>
 ## v20.0.0 (2025-06-05)
 
