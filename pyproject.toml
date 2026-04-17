@@ -26,14 +26,14 @@ classifiers = [
     "Programming Language :: Python :: 3.14",
 ]
 dependencies = [
-  "tutor>=21.0.0,<22.0.0",
+  "tutor>=22.0.0,<23.0.0",
 ]
 # these fields will be set by hatch_build.py
 dynamic = ["version"]
 
 [project.optional-dependencies]
 dev = [
-  "tutor[dev]>=21.0.0,<22.0.0", 
+  "tutor[dev]>=22.0.0,<23.0.0", 
   "ruff"
 ]
 
