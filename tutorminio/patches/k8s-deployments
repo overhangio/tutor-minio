@@ -2,44 +2,52 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: minio
+  name: rustfs
   labels:
-    app.kubernetes.io/name: minio
+    app.kubernetes.io/name: rustfs
 spec:
   selector:
     matchLabels:
-      app.kubernetes.io/name: minio
+      app.kubernetes.io/name: rustfs
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: minio
+        app.kubernetes.io/name: rustfs
     spec:
+      securityContext:
+        # RustFS runs as UID {{ RUSTFS_UID }}. fsGroup ensures the PVC
+        # is chowned to the right GID on mount so the non-root process
+        # can write. Without this, fresh installs hit EACCES on /data.
+        runAsUser: {{ RUSTFS_UID }}
+        runAsGroup: {{ RUSTFS_GID }}
+        fsGroup: {{ RUSTFS_GID }}
       containers:
-        - name: minio
-          image: {{ MINIO_DOCKER_IMAGE }}
-          {% if MINIO_GATEWAY %}
-          args: ["gateway", "{{ MINIO_GATEWAY }}", "--address", ":9000", "--console-address", ":9001"]
-          {% else %}
-          args: ["server", "--address", ":9000", "--console-address", ":9001", "/data"]
-          {% endif %}
+        - name: rustfs
+          image: {{ RUSTFS_DOCKER_IMAGE }}
           env:
-            - name: MINIO_ROOT_USER
+            - name: RUSTFS_ACCESS_KEY
               value: "{{ OPENEDX_AWS_ACCESS_KEY }}"
-            - name: MINIO_ROOT_PASSWORD
+            - name: RUSTFS_SECRET_KEY
               value: "{{ OPENEDX_AWS_SECRET_ACCESS_KEY }}"
+            - name: RUSTFS_VOLUMES
+              value: "/data"
+            - name: RUSTFS_ADDRESS
+              value: ":9000"
+            - name: RUSTFS_CONSOLE_ENABLE
+              value: "true"
+            - name: RUSTFS_CONSOLE_ADDRESS
+              value: ":9001"
           ports:
             - containerPort: 9000
+              name: s3-api
             - containerPort: 9001
-          {% if not MINIO_GATEWAY %}
+              name: console
           volumeMounts:
             - mountPath: /data
               name: data
-          {% endif %}
-      {% if not MINIO_GATEWAY %}
       volumes:
         - name: data
           persistentVolumeClaim:
-            claimName: minio
-      {% endif %}
+            claimName: rustfs

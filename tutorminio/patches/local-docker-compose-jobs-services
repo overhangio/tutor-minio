@@ -1,8 +1,12 @@
-# MinIO
+# Init/admin job container. RustFS is wire-compatible with the MinIO
+# `mc` client, so we keep the MinIO Client image here to reuse the
+# existing init logic (bucket creation + anonymous read policy).
+# Service name kept as `minio-job` so existing `CLI_DO_INIT_TASKS`
+# targeting "minio" keeps resolving.
 minio-job:
   image: {{ MINIO_MC_DOCKER_IMAGE }}
   environment:
     MINIO_ROOT_USER: "{{ OPENEDX_AWS_ACCESS_KEY }}"
     MINIO_ROOT_PASSWORD: "{{ OPENEDX_AWS_SECRET_ACCESS_KEY }}"
   entrypoint: []
-  depends_on: ["minio"]
+  depends_on: ["rustfs"]
