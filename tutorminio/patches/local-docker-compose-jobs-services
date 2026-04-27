@@ -1,8 +1,9 @@
-# MinIO
-minio-job:
-  image: {{ MINIO_MC_DOCKER_IMAGE }}
-  environment:
-    MINIO_ROOT_USER: "{{ OPENEDX_AWS_ACCESS_KEY }}"
-    MINIO_ROOT_PASSWORD: "{{ OPENEDX_AWS_SECRET_ACCESS_KEY }}"
+# Garage init job container — alpine shell + garage CLI for bucket/key setup
+garage-job:
+  image: {{ MINIO_JOB_DOCKER_IMAGE }}
+  volumes:
+    - ../../data/garage/meta:/var/lib/garage/meta:ro
+    - ../plugins/minio/apps/garage/garage.toml:/etc/garage.toml:ro
   entrypoint: []
-  depends_on: ["minio"]
+  depends_on:
+    - garage

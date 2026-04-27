@@ -1,16 +1,28 @@
-{% if not MINIO_GATEWAY %}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: minio
+  name: garage-meta
   labels:
     app.kubernetes.io/component: volume
-    app.kubernetes.io/name: minio
+    app.kubernetes.io/name: garage
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: garage-data
+  labels:
+    app.kubernetes.io/component: volume
+    app.kubernetes.io/name: garage
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
       storage: 5Gi
-{% endif %}

@@ -1,16 +1,21 @@
-# MinIO
-minio:
+# Garage object storage — S3-compatible backend (replaces MinIO)
+garage:
   image: {{ MINIO_DOCKER_IMAGE }}
-  {% if not MINIO_GATEWAY %}
   volumes:
-    - ../../data/minio:/data
-  {% endif %}
+    - ../../data/garage/meta:/var/lib/garage/meta
+    - ../../data/garage/data:/var/lib/garage/data
+    - ../plugins/minio/apps/garage/garage.toml:/etc/garage.toml:ro
+  restart: unless-stopped
+
+# Garage Web UI — admin/console replaces the legacy MinIO console
+garage-webui:
+  image: {{ MINIO_WEBUI_DOCKER_IMAGE }}
+  volumes:
+    - ../plugins/minio/apps/garage/garage.toml:/etc/garage.toml:ro
   environment:
-    MINIO_ROOT_USER: "{{ OPENEDX_AWS_ACCESS_KEY }}"
-    MINIO_ROOT_PASSWORD: "{{ OPENEDX_AWS_SECRET_ACCESS_KEY }}"
-  {% if MINIO_GATEWAY %}
-  command: gateway {{ MINIO_GATEWAY }} --address ":9000" --console-address ":9001"
-  {% else %}
-  command: server --address ":9000" --console-address ":9001" /data
-  {% endif %}
+    API_BASE_URL: "http://garage:3903"
+    S3_ENDPOINT_URL: "http://garage:9000"
+    CONFIG_PATH: "/etc/garage.toml"
+  depends_on:
+    - garage
   restart: unless-stopped

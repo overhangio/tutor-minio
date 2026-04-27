@@ -1,7 +1,7 @@
-# MinIO
+# Garage
 {{ MINIO_HOST }}{$default_site_port} {
-    import proxy "minio:9000"
+    import proxy "garage:9000"
 }
 {{ MINIO_CONSOLE_HOST }}{$default_site_port} {
-    import proxy "minio:9001"
+    import proxy "garage-webui:3909"
 }

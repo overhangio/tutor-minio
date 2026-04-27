@@ -1,0 +1,23 @@
+metadata_dir = "/var/lib/garage/meta"
+data_dir = "/var/lib/garage/data"
+db_engine = "lmdb"
+replication_factor = 1
+
+# Inter-node RPC + admin authentication. Both daemon and CLI must agree.
+rpc_bind_addr = "[::]:3901"
+rpc_secret = "{{ MINIO_RPC_SECRET | to_hex }}"
+
+[s3_api]
+s3_region = "us-east-1"
+# Bind on port 9000 so Open edX (which still uses MINIO_HOST:9000) reaches
+# Garage transparently — no Open edX-side changes required.
+api_bind_addr = "[::]:9000"
+root_domain = ".s3.garage"
+
+[s3_web]
+bind_addr = "[::]:3902"
+root_domain = ".web.garage"
+
+[admin]
+api_bind_addr = "[::]:3903"
+admin_token = "{{ MINIO_RPC_SECRET | to_hex }}"
