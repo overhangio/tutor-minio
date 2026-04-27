@@ -99,6 +99,26 @@ The RustFS web console can be accessed at ``http://<MINIO_CONSOLE_HOST>``. Crede
     tutor config printvalue OPENEDX_AWS_ACCESS_KEY
     tutor config printvalue OPENEDX_AWS_SECRET_ACCESS_KEY
 
+Migration notes
+---------------
+
+Because RustFS uses the same S3 wire format and the same ``mc`` tooling,
+a migration from MinIO is straightforward:
+
+1. Stop MinIO.
+2. Decide whether to keep the existing data volume. The v1.0.0-alpha
+   on-disk format is **not** guaranteed stable across RustFS releases, so
+   exporting your objects with ``mc mirror`` first is strongly advised.
+3. Upgrade this plugin, then re-run::
+
+       tutor config save
+       tutor local do init
+
+4. If you skipped the export, re-import with the following command against
+   the running RustFS instance::
+
+       mc mirror ./backup/<bucket>/ rustfs/<bucket>/
+
 Troubleshooting
 ---------------
 
