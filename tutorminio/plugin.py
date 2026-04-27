@@ -96,6 +96,7 @@ tutor_hooks.Filters.CONFIG_DEFAULTS.add_items(
         # for the init/admin job. This is intentional — RustFS is wire-
         # compatible with `mc`.
         ("MC_DOCKER_IMAGE", "docker.io/minio/mc:RELEASE.2022-03-31T04-55-30Z"),
+        ("MINIO_MC_DOCKER_IMAGE", "{{ MC_DOCKER_IMAGE }}"),
     ]
 )
 
