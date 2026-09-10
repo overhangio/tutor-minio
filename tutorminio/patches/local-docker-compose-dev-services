@@ -1,8 +1,10 @@
-minio:
+garage:
   ports:
     - "127.0.0.1:9000:9000"
-    - "127.0.0.1:9001:9001"
   networks:
     default:
       aliases:
         - "{{ MINIO_HOST }}"
+garage-webui:
+  ports:
+    - "127.0.0.1:3909:3909"

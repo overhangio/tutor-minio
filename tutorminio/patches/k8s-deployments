@@ -1,45 +1,112 @@
 ---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: garage-config
+  labels:
+    app.kubernetes.io/name: garage
+data:
+  garage.toml: |
+    metadata_dir = "/var/lib/garage/meta"
+    data_dir = "/var/lib/garage/data"
+    db_engine = "lmdb"
+    replication_factor = 1
+
+    rpc_bind_addr = "[::]:3901"
+    rpc_secret = "{{ MINIO_RPC_SECRET | to_hex }}"
+
+    [s3_api]
+    s3_region = "us-east-1"
+    api_bind_addr = "[::]:9000"
+    root_domain = ".s3.garage"
+
+    [s3_web]
+    bind_addr = "[::]:3902"
+    root_domain = ".web.garage"
+
+    [admin]
+    api_bind_addr = "[::]:3903"
+    admin_token = "{{ MINIO_RPC_SECRET | to_hex }}"
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: minio
+  name: garage
   labels:
-    app.kubernetes.io/name: minio
+    app.kubernetes.io/name: garage
 spec:
   selector:
     matchLabels:
-      app.kubernetes.io/name: minio
+      app.kubernetes.io/name: garage
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: minio
+        app.kubernetes.io/name: garage
     spec:
       containers:
-        - name: minio
+        - name: garage
           image: {{ MINIO_DOCKER_IMAGE }}
-          {% if MINIO_GATEWAY %}
-          args: ["gateway", "{{ MINIO_GATEWAY }}", "--address", ":9000", "--console-address", ":9001"]
-          {% else %}
-          args: ["server", "--address", ":9000", "--console-address", ":9001", "/data"]
-          {% endif %}
-          env:
-            - name: MINIO_ROOT_USER
-              value: "{{ OPENEDX_AWS_ACCESS_KEY }}"
-            - name: MINIO_ROOT_PASSWORD
-              value: "{{ OPENEDX_AWS_SECRET_ACCESS_KEY }}"
           ports:
             - containerPort: 9000
-            - containerPort: 9001
-          {% if not MINIO_GATEWAY %}
+              name: s3-api
+            - containerPort: 3901
+              name: rpc
+            - containerPort: 3903
+              name: admin-api
           volumeMounts:
-            - mountPath: /data
+            - mountPath: /etc/garage.toml
+              name: config
+              subPath: garage.toml
+            - mountPath: /var/lib/garage/meta
+              name: meta
+            - mountPath: /var/lib/garage/data
               name: data
-          {% endif %}
-      {% if not MINIO_GATEWAY %}
       volumes:
+        - name: config
+          configMap:
+            name: garage-config
+        - name: meta
+          persistentVolumeClaim:
+            claimName: garage-meta
         - name: data
           persistentVolumeClaim:
-            claimName: minio
-      {% endif %}
+            claimName: garage-data
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: garage-webui
+  labels:
+    app.kubernetes.io/name: garage-webui
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: garage-webui
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: garage-webui
+    spec:
+      containers:
+        - name: garage-webui
+          image: {{ MINIO_WEBUI_DOCKER_IMAGE }}
+          ports:
+            - containerPort: 3909
+              name: http
+          env:
+            - name: API_BASE_URL
+              value: "http://garage:3903"
+            - name: S3_ENDPOINT_URL
+              value: "http://garage:9000"
+            - name: CONFIG_PATH
+              value: "/etc/garage.toml"
+          volumeMounts:
+            - mountPath: /etc/garage.toml
+              name: config
+              subPath: garage.toml
+      volumes:
+        - name: config
+          configMap:
+            name: garage-config
