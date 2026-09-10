@@ -2,15 +2,15 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: minio
+  name: rustfs
 spec:
   type: NodePort
   ports:
     - port: 9000
       protocol: TCP
-      name: minio-server
+      name: s3-api
     - port: 9001
       protocol: TCP
-      name: minio-console
+      name: console
   selector:
-    app.kubernetes.io/name: minio
+    app.kubernetes.io/name: rustfs

@@ -1,16 +1,22 @@
-# MinIO
-minio:
-  image: {{ MINIO_DOCKER_IMAGE }}
-  {% if not MINIO_GATEWAY %}
+# RustFS (S3-compatible object storage, MinIO drop-in — ALPHA).
+# Ports are intentionally identical to MinIO's (9000 S3, 9001 console)
+# so that `MINIO_HOST`, Caddy config, and `AWS_S3_ENDPOINT_URL` need no
+# change. RustFS runs as UID {{ RUSTFS_UID }} (non-root), so the data
+# volume must be writable by that UID. On first run of a fresh install
+# this is handled automatically because Docker creates the bind-mounted
+# directory with the host user's UID and RustFS will happily write to
+# it; if you hit "permission denied", run:
+#     sudo chown -R {{ RUSTFS_UID }}:{{ RUSTFS_GID }} $(tutor config printroot)/data/minio
+rustfs:
+  image: {{ RUSTFS_DOCKER_IMAGE }}
+  user: "{{ RUSTFS_UID }}:{{ RUSTFS_GID }}"
   volumes:
     - ../../data/minio:/data
-  {% endif %}
   environment:
-    MINIO_ROOT_USER: "{{ OPENEDX_AWS_ACCESS_KEY }}"
-    MINIO_ROOT_PASSWORD: "{{ OPENEDX_AWS_SECRET_ACCESS_KEY }}"
-  {% if MINIO_GATEWAY %}
-  command: gateway {{ MINIO_GATEWAY }} --address ":9000" --console-address ":9001"
-  {% else %}
-  command: server --address ":9000" --console-address ":9001" /data
-  {% endif %}
+    RUSTFS_ACCESS_KEY: "{{ OPENEDX_AWS_ACCESS_KEY }}"
+    RUSTFS_SECRET_KEY: "{{ OPENEDX_AWS_SECRET_ACCESS_KEY }}"
+    RUSTFS_VOLUMES: "/data"
+    RUSTFS_ADDRESS: ":9000"
+    RUSTFS_CONSOLE_ENABLE: "true"
+    RUSTFS_CONSOLE_ADDRESS: ":9001"
   restart: unless-stopped

@@ -1,16 +1,14 @@
-{% if not MINIO_GATEWAY %}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: minio
+  name: rustfs
   labels:
     app.kubernetes.io/component: volume
-    app.kubernetes.io/name: minio
+    app.kubernetes.io/name: rustfs
 spec:
   accessModes:
     - ReadWriteOnce
   resources:
     requests:
       storage: 5Gi
-{% endif %}
