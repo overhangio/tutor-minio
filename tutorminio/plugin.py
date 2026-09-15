@@ -33,8 +33,8 @@ config: dict[str, dict[str, t.Any]] = {
         # support gateway mode to Azure:
         # https://blog.min.io/deprecation-of-the-minio-gateway/
         # https://min.io/docs/minio/linux/operations/install-deploy-manage/migrate-fs-gateway.html
-        "DOCKER_IMAGE": "docker.io/minio/minio:RELEASE.2022-03-26T06-49-28Z.hotfix.26ec6a857",  # noqa: E501
-        "MC_DOCKER_IMAGE": "docker.io/minio/mc:RELEASE.2022-03-31T04-55-30Z",
+        "DOCKER_IMAGE": "quay.io/minio/minio:RELEASE.2022-04-01T03-41-39Z",  # noqa: E501
+        "MC_DOCKER_IMAGE": "quay.io/minio/mc:RELEASE.2022-03-31T04-55-30Z",
         "GATEWAY": None,
         "DISCOVERY_BUCKET_NAME": "{% if 'discovery' in PLUGINS %}discoveryuploads{% endif %}",  # noqa: E501
     },
