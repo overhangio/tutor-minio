@@ -1,3 +1,8 @@
+⛔️ WARNING
+===========
+
+This plugin is deprecated and will be completely removed in the Tutor Willow release. For more details, please refer to the `tutor-minio deprecation ticket <https://github.com/overhangio/tutor-minio/issues/70>`_.
+
 Object storage for Open edX with `MinIO <https://www.minio.io/>`_
 =================================================================
 
