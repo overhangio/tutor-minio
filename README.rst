@@ -25,8 +25,8 @@ Configuration
 - ``MINIO_FILE_UPLOAD_BUCKET_NAME`` (default: ``"openedxuploads"``)
 - ``MINIO_HOST`` (default: ``"files.{{ LMS_HOST }}"``)
 - ``MINIO_CONSOLE_HOST`` (default: ``"minio.{{ LMS_HOST }}"``)
-- ``MINIO_DOCKER_IMAGE`` (default: ``"docker.io/minio/minio:RELEASE.2022-05-08T23-50-31Z"``)
-- ``MINIO_MC_DOCKER_IMAGE`` (default: ``"docker.io/minio/mc:RELEASE.2022-05-09T04-08-26Z"``)
+- ``MINIO_DOCKER_IMAGE`` (default: ``"docker.io/rancher/mirrored-minio-minio:RELEASE.2022-03-24T00-43-44Z"``)
+- ``MINIO_MC_DOCKER_IMAGE`` (default: ``"docker.io/rancher/mirrored-minio-mc:RELEASE.2022-05-09T04-08-26Z"``)
 - ``MINIO_GRADES_BUCKET_NAME`` (default: ``"openedxgrades"``)
 
 These values can be modified with ``tutor config save --set PARAM_NAME=VALUE`` commands.
@@ -36,6 +36,11 @@ These values can be modified with ``tutor config save --set PARAM_NAME=VALUE`` c
 This feature allows your to run the MinIO server as a gateway to another object storage solution, such as `S3 <https://docs.minio.io/docs/minio-gateway-for-s3.html>`__ or `Azure <https://docs.minio.io/docs/minio-gateway-for-azure.html>`__. That way, static assets can be stored on these object storage backends without extensive changes to the Open edX runtime environment.
 
 Note to Azure users: you will have to manually grant public access rights to the ``MINIO_BUCKET_NAME`` ("openedx") bucket.
+
+Note: MinIO has removed ``minio/minio`` and ``minio/mc`` from Docker Hub and quay.io
+entirely, so these images are pulled from `Rancher's mirror
+<https://hub.docker.com/r/rancher/mirrored-minio-minio>`__ instead of the official
+(now gone) ones. It's the same binary, re-tagged under Rancher's namespace.
 
 DNS records
 -----------
