@@ -27,14 +27,13 @@ config: dict[str, dict[str, t.Any]] = {
         "OPENEDX_LEARNING_BUCKET_NAME": "openedxlearning",
         "GRADES_BUCKET_NAME": "openedxgrades",
         "QUERYSTRING_AUTH": True,
-        # https://hub.docker.com/r/minio/minio/tags
-        # https://hub.docker.com/r/minio/mc/tags
-        # We must stick to these older releases because they are the last ones that
-        # support gateway mode to Azure:
-        # https://blog.min.io/deprecation-of-the-minio-gateway/
-        # https://min.io/docs/minio/linux/operations/install-deploy-manage/migrate-fs-gateway.html
-        "DOCKER_IMAGE": "docker.io/minio/minio:RELEASE.2022-03-26T06-49-28Z.hotfix.26ec6a857",  # noqa: E501
-        "MC_DOCKER_IMAGE": "docker.io/minio/mc:RELEASE.2022-03-31T04-55-30Z",
+        # minio/minio and minio/mc are gone from Docker Hub and quay.io, so we pull
+        # from Rancher's mirror instead. DOCKER_IMAGE is pinned before Gateway mode
+        # was dropped (https://blog.min.io/deprecation-of-the-minio-gateway/); Rancher
+        # has no mc build from that far back, but mc's `config`/`policy` (used in
+        # init.sh) still work against this newer one, just undocumented.
+        "DOCKER_IMAGE": "docker.io/rancher/mirrored-minio-minio:RELEASE.2022-03-24T00-43-44Z",  # noqa: E501
+        "MC_DOCKER_IMAGE": "docker.io/rancher/mirrored-minio-mc:RELEASE.2022-05-09T04-08-26Z",  # noqa: E501
         "GATEWAY": None,
         "DISCOVERY_BUCKET_NAME": "{% if 'discovery' in PLUGINS %}discoveryuploads{% endif %}",  # noqa: E501
     },
