@@ -3,6 +3,8 @@
 
 This plugin is deprecated and will be completely removed in the Tutor Willow release. For more details, please refer to the `tutor-minio deprecation ticket <https://github.com/overhangio/tutor-minio/issues/70>`_.
 
+Use `tutor-objectstorage <https://github.com/overhangio/tutor-objectstorage>`_ instead, which replaces this plugin.
+
 Object storage for Open edX with `MinIO <https://www.minio.io/>`_
 =================================================================
 
